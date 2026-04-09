@@ -38,7 +38,9 @@ body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);
 .float-bar{
   position:fixed;bottom:24px;right:20px;z-index:9999;
   display:flex;flex-direction:column;gap:12px;
+  transition:opacity .4s, transform .4s;
 }
+.float-bar.hidden-on-hero{opacity:0;pointer-events:none;transform:translateY(16px);}
 .float-btn{
   display:flex;align-items:center;gap:10px;
   padding:13px 20px;border-radius:50px;
@@ -165,21 +167,7 @@ nav.scrolled{background:rgba(7,24,72,.98);box-shadow:0 4px 30px rgba(0,0,0,.3);}
   animation:bounce 2s infinite;
 }
 .hero-scroll span{width:1px;height:40px;background:rgba(255,255,255,.4);}
-.hero-call-bar{
-  position:absolute;bottom:90px;left:50%;transform:translateX(-50%);
-  z-index:2;display:flex;gap:14px;
-  animation:fadeInUp .9s ease .8s both;
-}
-.hero-call-btn{
-  display:flex;align-items:center;gap:8px;
-  padding:10px 22px;border-radius:50px;
-  font-size:.88rem;font-weight:700;cursor:pointer;border:none;font-family:inherit;
-  text-decoration:none;color:#fff;transition:all .3s;
-}
-.hero-call-btn.hcall{background:rgba(33,150,243,.3);border:1px solid rgba(33,150,243,.6);backdrop-filter:blur(8px);}
-.hero-call-btn.hcall:hover{background:rgba(33,150,243,.5);}
-.hero-call-btn.hwa{background:rgba(37,211,102,.3);border:1px solid rgba(37,211,102,.6);backdrop-filter:blur(8px);}
-.hero-call-btn.hwa:hover{background:rgba(37,211,102,.5);}
+/* hero-call-bar removed */
 
 /* ── SECTIONS ── */
 .section{padding:96px 40px;}
@@ -400,7 +388,43 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
 .lightbox img{max-width:90vw;max-height:90vh;border-radius:var(--radius);object-fit:contain;}
 .lightbox-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.1);border:none;color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.2rem;}
 
-/* ── ANIMATIONS ── */
+/* ── BLOG PAGE ── */
+.blog-hero{background:linear-gradient(135deg,var(--navy-dark),var(--navy));padding:120px 40px 60px;text-align:center;}
+.blog-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:64px 40px;max-width:1200px;margin:0 auto;}
+.blog-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-card);overflow:hidden;transition:transform .3s;}
+.blog-card:hover{transform:translateY(-6px);}
+.blog-card-img{height:200px;background:linear-gradient(135deg,var(--navy),var(--accent));overflow:hidden;position:relative;}
+.blog-card-img img{width:100%;height:100%;object-fit:cover;}
+.blog-card-body{padding:24px;}
+.blog-card-meta{font-size:.75rem;color:var(--accent);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.blog-card-body h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.3;}
+.blog-card-body p{font-size:.85rem;color:var(--gray);line-height:1.7;margin-bottom:16px;}
+.blog-tag{display:inline-block;background:var(--off-white);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:50px;margin-right:6px;margin-bottom:6px;}
+.blog-read-more{display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-size:.85rem;font-weight:600;text-decoration:none;cursor:pointer;background:none;border:none;font-family:inherit;padding:0;}
+.blog-read-more:hover{color:var(--accent);}
+/* Blog Detail View */
+.blog-detail{max-width:800px;margin:0 auto;padding:64px 40px;}
+.blog-detail-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--navy);margin-bottom:16px;}
+.blog-detail-meta{font-size:.82rem;color:var(--gray);margin-bottom:32px;display:flex;gap:16px;flex-wrap:wrap;}
+.blog-detail-img{width:100%;border-radius:var(--radius-lg);margin-bottom:36px;object-fit:cover;height:380px;}
+.blog-detail-content{font-size:1rem;color:#4a5568;line-height:1.9;}
+.blog-detail-content p{margin-bottom:20px;}
+.blog-detail-content h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--navy);margin:32px 0 12px;}
+.blog-detail-content h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--navy);margin:24px 0 10px;}
+.blog-detail-content ul{margin:12px 0 20px 24px;}
+.blog-detail-content ul li{margin-bottom:8px;}
+.btn-back{display:inline-flex;align-items:center;gap:8px;color:var(--navy);font-weight:600;cursor:pointer;background:none;border:none;font-family:inherit;font-size:.95rem;margin-bottom:32px;padding:0;}
+.btn-back:hover{color:var(--accent);}
+/* Admin Blog Tab */
+.blog-edit-form textarea{min-height:200px;}
+.blog-list-item{background:#fff;border-radius:12px;padding:20px;box-shadow:var(--shadow-card);margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+.blog-list-item h4{font-size:.95rem;font-weight:600;color:var(--navy);}
+.blog-list-item p{font-size:.8rem;color:var(--gray);margin-top:4px;}
+.btn-edit{background:#e0f0ff;color:var(--accent);border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:.8rem;font-weight:600;margin-right:6px;}
+@media(max-width:1024px){.blog-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){.blog-grid{grid-template-columns:1fr;padding:40px 20px;}.blog-detail{padding:40px 20px;}}
+
 @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(10px);}}
@@ -473,6 +497,7 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
     <li><a onclick="showPage('home');scrollToSection('about')">About Us</a></li>
     <li><a onclick="showPage('gallery')">Gallery</a></li>
     <li><a onclick="showPage('home');scrollToSection('testimonials')">Reviews</a></li>
+    <li><a onclick="showPage('blog')">Blog</a></li>
     <li><a class="btn-nav" onclick="showPage('home');scrollToSection('appointment')">📅 Book Appointment</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
@@ -483,6 +508,7 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
   <a onclick="showPage('home');scrollToSection('about');closeMobile()">About Dr. Kartik</a>
   <a onclick="showPage('gallery');closeMobile()">Gallery</a>
   <a onclick="showPage('home');scrollToSection('testimonials');closeMobile()">Reviews</a>
+  <a onclick="showPage('blog');closeMobile()">Blog</a>
   <a onclick="openAdmin()">⚙️ Admin Panel</a>
   <a onclick="showPage('home');scrollToSection('appointment');closeMobile()" style="background:var(--accent);color:#fff;border-radius:10px;margin-top:8px;">📅 Book Appointment</a>
 </div>
@@ -510,10 +536,6 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
         <i class="fas fa-tooth"></i> Our Services
       </button>
     </div>
-  </div>
-  <div class="hero-call-bar">
-    <a href="tel:9588538545" class="hero-call-btn hcall"><i class="fas fa-phone-alt"></i> Call Now</a>
-    <a href="https://wa.me/919588538545" target="_blank" class="hero-call-btn hwa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
   <div class="hero-scroll"><span></span>SCROLL</div>
 </section>
@@ -755,6 +777,7 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
       <li><a onclick="showPage('gallery')">Gallery</a></li>
       <li><a onclick="showPage('home');scrollToSection('appointment')">Book Appointment</a></li>
       <li><a href="tel:9588538545">Call Us</a></li>
+      <li><a onclick="showPage('blog')">Blog</a></li>
       <li><a onclick="openAdmin()">Admin Panel</a></li>
     </ul></div>
     <div class="footer-col"><h4>Areas Served</h4><ul>
@@ -773,6 +796,49 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
       <p class="section-subtitle" style="margin:0 auto 0;">Modern, hygienic, and welcoming — 1st floor , 2D 9/10 BP , Tikona Park NIT Faridabda Tikona Park</p>
   </div>
 </footer>
+
+<!-- ══════════════════ BLOG PAGE ══════════════════ -->
+<div id="blog-page" class="page">
+  <!-- Blog listing view -->
+  <div id="blogListingView">
+    <div class="blog-hero">
+      <span class="section-tag" style="color:var(--gold);">Health Tips & Dental Advice</span>
+      <h1>TruSmile <span style="color:var(--gold);">Dental Blog</span></h1>
+      <div class="divider center"></div>
+      <p class="section-subtitle" style="color:rgba(255,255,255,.8);margin:0 auto;">Expert dental tips, oral health advice and treatment insights from Dr. Kartik Rohilla — NIT Faridabad</p>
+    </div>
+    <div class="blog-grid" id="blogPublicGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray);">
+        <i class="fas fa-pen-nib" style="font-size:3rem;margin-bottom:16px;opacity:.3;display:block;"></i>
+        <p>No blog posts yet. Check back soon!</p>
+      </div>
+    </div>
+    <footer style="background:var(--navy-dark);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:.82rem;">
+      © 2024 TruSmile Dental Clinic · NIT Faridabad · Dr. Kartik Rohilla BDS
+    </footer>
+  </div>
+
+  <!-- Blog detail view (hidden by default) -->
+  <div id="blogDetailView" style="display:none;">
+    <div style="background:var(--navy-dark);padding:20px 40px 0;">
+      <button class="btn-back" onclick="closeBlogDetail()" style="color:rgba(255,255,255,.85);"><i class="fas fa-arrow-left"></i> Back to Blog</button>
+    </div>
+    <div class="blog-detail">
+      <div id="blogDetailMeta" class="blog-detail-meta"></div>
+      <h1 id="blogDetailTitle" class="blog-detail-title"></h1>
+      <img id="blogDetailImg" class="blog-detail-img" src="" alt="" style="display:none;">
+      <div id="blogDetailContent" class="blog-detail-content"></div>
+      <div id="blogDetailTags" style="margin-top:32px;"></div>
+      <div style="margin-top:40px;background:var(--off-white);border-radius:var(--radius);padding:28px;text-align:center;">
+        <p style="font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:12px;">Need dental advice? Book a free consultation!</p>
+        <a href="tel:9588538545" class="btn-primary" style="display:inline-flex;"><i class="fas fa-phone-alt"></i> Call Dr. Kartik: 9588538545</a>
+      </div>
+    </div>
+    <footer style="background:var(--navy-dark);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:.82rem;">
+      © 2024 TruSmile Dental Clinic · NIT Faridabad · Dr. Kartik Rohilla BDS
+    </footer>
+  </div>
+</div>
 
 <!-- ══════════════════ ADMIN ══════════════════ -->
 <div class="admin-overlay" id="adminOverlay">
@@ -797,6 +863,7 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
       <button class="admin-tab active" onclick="switchAdminTab('services',this)">🦷 Services</button>
       <button class="admin-tab" onclick="switchAdminTab('gallery',this)">📷 Gallery</button>
       <button class="admin-tab" onclick="switchAdminTab('testimonials',this)">⭐ Reviews</button>
+      <button class="admin-tab" onclick="switchAdminTab('blogs',this)">📝 Blog Posts</button>
     </div>
 
     <!-- SERVICES -->
@@ -852,6 +919,41 @@ footer{background:var(--navy-dark);color:rgba(255,255,255,.8);}
       </div>
       <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:12px;">Current Reviews</h3>
       <div class="items-list" id="testimonialsList"></div>
+    </div>
+
+    <!-- BLOG POSTS -->
+    <div class="admin-tab-content" id="tab-blogs">
+      <div class="admin-form" id="blogFormWrapper">
+        <h3 id="blogFormTitle">✍️ Write New Blog Post</h3>
+        <input type="hidden" id="blogEditId">
+        <div class="afg"><label>Blog Title * (Use SEO keywords)</label><input class="admin-input" type="text" id="blogTitle" placeholder="e.g. Best Foods for Healthy Teeth — Tips by Dr. Kartik"></div>
+        <div class="afg-row">
+          <div class="afg"><label>Category</label>
+            <select class="admin-input" id="blogCategory">
+              <option>Oral Hygiene</option>
+              <option>Root Canal</option>
+              <option>Dental Implants</option>
+              <option>Braces & Aligners</option>
+              <option>Cosmetic Dentistry</option>
+              <option>Pediatric Dentistry</option>
+              <option>Teeth Whitening</option>
+              <option>Smile Makeover</option>
+              <option>General Dentistry</option>
+            </select>
+          </div>
+          <div class="afg"><label>SEO Tags (comma separated)</label><input class="admin-input" type="text" id="blogTags" placeholder="dental implants Faridabad, best dentist NIT"></div>
+        </div>
+        <div class="afg"><label>Short Description (shown on blog card)</label><textarea class="admin-input" id="blogExcerpt" style="min-height:80px;" placeholder="2-3 lines summary for listing page..."></textarea></div>
+        <div class="afg"><label>Full Blog Content * (HTML supported: &lt;p&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;ul&gt;, &lt;li&gt;)</label><textarea class="admin-input" id="blogContent" style="min-height:280px;" placeholder="Write your full blog post here. You can use HTML tags for formatting.&#10;&#10;&lt;h2&gt;Why Dental Health Matters&lt;/h2&gt;&#10;&lt;p&gt;Your paragraph here...&lt;/p&gt;&#10;&lt;ul&gt;&lt;li&gt;Point 1&lt;/li&gt;&lt;/ul&gt;"></textarea></div>
+        <div class="afg"><label>Featured Image URL (optional)</label><input class="admin-input" type="url" id="blogImg" placeholder="https://images.unsplash.com/..."></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn-save" onclick="saveBlog()">💾 Save Blog Post</button>
+          <button id="blogCancelEdit" onclick="cancelBlogEdit()" style="display:none;background:#f3f4f6;color:var(--navy);border:none;padding:12px 24px;border-radius:10px;font-size:.95rem;font-weight:600;cursor:pointer;font-family:inherit;">Cancel Edit</button>
+        </div>
+        <p style="font-size:.78rem;color:var(--gray);margin-top:12px;">💡 Tip: Use local keywords like "Faridabad", "NIT", "Miglani Clinic" in titles and content for better SEO ranking.</p>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:12px;">Published Blog Posts (<span id="blogCount">0</span>)</h3>
+      <div class="items-list" id="blogList"></div>
     </div>
   </div>
 </div>
@@ -926,6 +1028,15 @@ function showPage(id){
   else document.getElementById('home-page').classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   if(id==='gallery') renderGalleryFull();
+  if(id==='blog'){
+    renderBlogPublic();
+    // reset to listing view when navigating to blog
+    document.getElementById('blogListingView').style.display='block';
+    document.getElementById('blogDetailView').style.display='none';
+    document.title='Dental Health Blog | TruSmile Dental Clinic NIT Faridabad | Dr. Kartik Rohilla';
+  } else {
+    document.title='TruSmile Dental Clinic | Best Dentist near Miglani Clinic NIT Faridabad | Dr. Kartik Rohilla';
+  }
   setTimeout(initScrollAnimations,100);
 }
 function scrollToSection(id){
@@ -1087,7 +1198,16 @@ function initScrollAnimations(){
 }
 
 // ── NAVBAR ────────────────────────────────────────────
-window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>80));
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',scrollY>80);
+  // Hide float buttons when video/hero section is visible
+  const heroEl=document.getElementById('hero');
+  const floatBar=document.querySelector('.float-bar');
+  if(heroEl&&floatBar){
+    const heroBottom=heroEl.getBoundingClientRect().bottom;
+    floatBar.classList.toggle('hidden-on-hero', heroBottom>100);
+  }
+});
 function toggleMobile(){document.getElementById('mobileMenu').classList.toggle('open');}
 function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');}
 
@@ -1103,7 +1223,7 @@ function checkAdmin(){
   if(pwd==='admin123'){
     closeAdmin();
     document.getElementById('adminPanel').classList.add('open');
-    renderAdminServices();renderAdminGallery();renderAdminTestimonials();
+    renderAdminServices();renderAdminGallery();renderAdminTestimonials();renderAdminBlogs();
   }else{
     document.getElementById('loginErr').style.display='block';
     document.getElementById('adminPwd').value='';
@@ -1228,12 +1348,168 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeLightbox();closeAdmin();document.getElementById('adminPanel').classList.remove('open');}
 });
 
+
+// ── BLOG SYSTEM ───────────────────────────────────────
+let blogs = JSON.parse(localStorage.getItem('ts2_blogs')||'[]');
+
+function saveBlog(){
+  const id = document.getElementById('blogEditId').value;
+  const title = document.getElementById('blogTitle').value.trim();
+  const category = document.getElementById('blogCategory').value;
+  const tags = document.getElementById('blogTags').value.trim();
+  const excerpt = document.getElementById('blogExcerpt').value.trim();
+  const content = document.getElementById('blogContent').value.trim();
+  const img = document.getElementById('blogImg').value.trim();
+  if(!title){alert('Blog title is required!');return;}
+  if(!content){alert('Blog content is required!');return;}
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'});
+  if(id){
+    // Update existing
+    const idx = blogs.findIndex(b=>b.id==id);
+    if(idx>-1){
+      blogs[idx]={...blogs[idx],title,category,tags,excerpt,content,img,updated:dateStr};
+      showNotification('Blog post updated!');
+    }
+  } else {
+    // New post
+    blogs.push({id:Date.now(),title,category,tags,excerpt,content,img,date:dateStr,author:'Dr. Kartik Rohilla'});
+    showNotification('Blog post published!');
+  }
+  localStorage.setItem('ts2_blogs',JSON.stringify(blogs));
+  clearBlogForm();
+  renderAdminBlogs();
+  renderBlogPublic();
+}
+
+function clearBlogForm(){
+  ['blogEditId','blogTitle','blogTags','blogExcerpt','blogContent','blogImg'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.value='';
+  });
+  document.getElementById('blogFormTitle').textContent='✍️ Write New Blog Post';
+  document.getElementById('blogCancelEdit').style.display='none';
+}
+
+function cancelBlogEdit(){
+  clearBlogForm();
+}
+
+function editBlog(id){
+  const b = blogs.find(b=>b.id==id);
+  if(!b) return;
+  document.getElementById('blogEditId').value = b.id;
+  document.getElementById('blogTitle').value = b.title;
+  document.getElementById('blogCategory').value = b.category;
+  document.getElementById('blogTags').value = b.tags||'';
+  document.getElementById('blogExcerpt').value = b.excerpt||'';
+  document.getElementById('blogContent').value = b.content;
+  document.getElementById('blogImg').value = b.img||'';
+  document.getElementById('blogFormTitle').textContent='✏️ Edit Blog Post';
+  document.getElementById('blogCancelEdit').style.display='inline-block';
+  // scroll to form
+  document.getElementById('blogFormWrapper').scrollIntoView({behavior:'smooth'});
+}
+
+function deleteBlog(id){
+  if(!confirm('Delete this blog post?')) return;
+  blogs = blogs.filter(b=>b.id!=id);
+  localStorage.setItem('ts2_blogs',JSON.stringify(blogs));
+  renderAdminBlogs();
+  renderBlogPublic();
+  showNotification('Blog deleted!','#ef5350');
+}
+
+function renderAdminBlogs(){
+  const l = document.getElementById('blogList');
+  const cnt = document.getElementById('blogCount');
+  if(!l) return;
+  if(cnt) cnt.textContent = blogs.length;
+  if(!blogs.length){
+    l.innerHTML='<p style="color:var(--gray);font-size:.9rem;padding:16px 0;">No blog posts yet. Write your first post above!</p>';
+    return;
+  }
+  l.innerHTML = blogs.slice().reverse().map(b=>`
+    <div class="blog-list-item">
+      <div style="flex:1;">
+        <h4>${b.title}</h4>
+        <p><span style="color:var(--accent);font-weight:600;">${b.category}</span> · ${b.date}</p>
+        ${b.excerpt?`<p style="margin-top:6px;">${b.excerpt.substring(0,80)}...</p>`:''}
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0;">
+        <button class="btn-edit" onclick="editBlog(${b.id})"><i class="fas fa-edit"></i> Edit</button>
+        <button class="btn-delete" onclick="deleteBlog(${b.id})">Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderBlogPublic(){
+  const grid = document.getElementById('blogPublicGrid');
+  if(!grid) return;
+  if(!blogs.length){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray);">
+      <i class="fas fa-pen-nib" style="font-size:3rem;margin-bottom:16px;opacity:.3;display:block;"></i>
+      <p>No blog posts yet. Check back soon!</p></div>`;
+    return;
+  }
+  grid.innerHTML = blogs.slice().reverse().map(b=>`
+    <div class="blog-card reveal">
+      <div class="blog-card-img">
+        ${b.img?`<img src="${b.img}" alt="${b.title}" loading="lazy">`:`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i class="fas fa-tooth" style="font-size:3rem;color:rgba(255,255,255,.4);"></i></div>`}
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-meta">${b.category} · ${b.date}</div>
+        <h3>${b.title}</h3>
+        <p>${(b.excerpt||b.content.replace(/<[^>]+>/g,'')).substring(0,120)}...</p>
+        ${b.tags?b.tags.split(',').slice(0,3).map(t=>`<span class="blog-tag">${t.trim()}</span>`).join(''):''}
+        <br><br>
+        <button class="blog-read-more" onclick="openBlogDetail(${b.id})">Read More <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  `).join('');
+  // animate reveals
+  setTimeout(()=>document.querySelectorAll('#blogPublicGrid .reveal').forEach(el=>el.classList.add('visible')),100);
+}
+
+function openBlogDetail(id){
+  const b = blogs.find(b=>b.id==id);
+  if(!b) return;
+  document.getElementById('blogDetailTitle').textContent = b.title;
+  document.getElementById('blogDetailMeta').innerHTML = `
+    <span><i class="fas fa-user-md"></i> ${b.author||'Dr. Kartik Rohilla'}</span>
+    <span><i class="fas fa-calendar"></i> ${b.date}</span>
+    <span><i class="fas fa-tag"></i> ${b.category}</span>`;
+  const imgEl = document.getElementById('blogDetailImg');
+  if(b.img){imgEl.src=b.img;imgEl.alt=b.title;imgEl.style.display='block';}
+  else{imgEl.style.display='none';}
+  document.getElementById('blogDetailContent').innerHTML = b.content;
+  document.getElementById('blogDetailTags').innerHTML = b.tags?
+    b.tags.split(',').map(t=>`<span class="blog-tag">${t.trim()}</span>`).join(''):'';
+  // update page title for SEO
+  document.title = `${b.title} | TruSmile Dental Clinic NIT Faridabad`;
+  document.getElementById('blogListingView').style.display='none';
+  document.getElementById('blogDetailView').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function closeBlogDetail(){
+  document.getElementById('blogDetailView').style.display='none';
+  document.getElementById('blogListingView').style.display='block';
+  document.title='TruSmile Dental Clinic | Best Dentist near Miglani Clinic NIT Faridabad | Dr. Kartik Rohilla';
+  window.scrollTo(0,0);
+}
+
 // ── INIT ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',()=>{
   renderServices();
   renderGalleryHome();
   renderTestimonials();
+  renderBlogPublic();
   initScrollAnimations();
+  // Hide float bar on initial load (hero is visible)
+  const floatBar=document.querySelector('.float-bar');
+  if(floatBar) floatBar.classList.add('hidden-on-hero');
 });
 </script>
 </body>
